@@ -593,58 +593,67 @@ export default function App() {
   return (
     <div className="app-shell">
       {/* SIDEBAR */}
-      <aside
-        className={`sidebar ${
-          mobileMenu ? 'sidebar-open' : ''
-        }`}
+     
+{/* SIDEBAR */}
+<aside
+  className={`sidebar ${mobileMenu ? 'sidebar-open' : ''}`}
+>
+  {/* CLICKABLE BRAND - GO TO DASHBOARD */}
+  <button
+    type="button"
+    className="sidebar-brand brand-home"
+    onClick={() => {
+      setView('dashboard');
+      setMobileMenu(false);
+      setError('');
+    }}
+    aria-label="Go to Dashboard"
+  >
+    <div className="brand-icon">
+      <BriefcaseBusiness size={22} />
+    </div>
+
+    <span>
+      Work<span className="brand-accent">Space</span>
+    </span>
+  </button>
+
+  <p className="side-label">WORKSPACE</p>
+
+  <nav>
+    {navItems.map(({ id, label, icon: Icon }) => (
+      <button
+        key={id}
+        className={`nav-item ${view === id ? 'active' : ''}`}
+        onClick={() => {
+          setView(id);
+          setMobileMenu(false);
+          setError('');
+        }}
       >
-        <div className="sidebar-brand">
-          <div className="brand-icon">
-            <BriefcaseBusiness size={22} />
-          </div>
+        <Icon size={19} />
+        {label}
+      </button>
+    ))}
+  </nav>
 
-          <span>
-            Work<span className="brand-accent">Space</span>
-          </span>
-        </div>
+  <div className="sidebar-bottom">
+    <div className="profile-mini">
+      <div className="avatar">{initials}</div>
 
-        <p className="side-label">WORKSPACE</p>
+      <div className="profile-text">
+        <strong>{displayName}</strong>
+        <span>{user.role}</span>
+      </div>
+    </div>
 
-        <nav>
-          {navItems.map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              className={`nav-item ${
-                view === id ? 'active' : ''
-              }`}
-              onClick={() => {
-                setView(id);
-                setMobileMenu(false);
-                setError('');
-              }}
-            >
-              <Icon size={19} />
-              {label}
-            </button>
-          ))}
-        </nav>
+    <button className="nav-item logout" onClick={logout}>
+      <LogOut size={18} />
+      Sign out
+    </button>
+  </div>
+</aside>
 
-        <div className="sidebar-bottom">
-          <div className="profile-mini">
-            <div className="avatar">{initials}</div>
-
-            <div className="profile-text">
-              <strong>{displayName}</strong>
-              <span>{user.role}</span>
-            </div>
-          </div>
-
-          <button className="nav-item logout" onClick={logout}>
-            <LogOut size={18} />
-            Sign out
-          </button>
-        </div>
-      </aside>
 
       {/* MAIN CONTENT */}
       <main className="main-area">

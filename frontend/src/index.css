@@ -155,3 +155,23 @@ tbody tr:last-child td { border-bottom: 0; }
   .content { padding: 24px 14px 40px; }
   .topbar { padding: 0 14px; }
 }
+
+
+.brand-home {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.brand-home:hover {
+  opacity: 0.9;
+}
+
+.brand-home:focus-visible {
+  outline: 2px solid #7997ff;
+  outline-offset: 4px;
+  border-radius: 10px;
+}
